@@ -31,14 +31,16 @@ stop_words = set(["a","able","about","across","after","all","almost",
     "twas","us","wants","was","we","were","what","when","where","which",
     "while","who","whom","why","will","with","would","yet","you","your"])
 
-def tokenizer (filename):
-    ''' This function take a filename as argument
+def tokenizer (filepath):
+    ''' This function take a filepath as argument
         It creates a set of tokens of the terms in the file and dumps them
         to a filename.tokens file in the folder "$PWD/../index/"
     '''
     
+    filename = (filepath.split('/'))[-1]
+    cwd = filepath
     print "creating index for %s" % filename
-    file = open(filename, 'r')
+    file = open(filepath, 'r')
     tokens = set([])
 
     for line in file:
@@ -52,7 +54,7 @@ def tokenizer (filename):
 
     file.close()
     cwd = os.getcwd()
-    folder = cwd+"/../index"
+    folder = "./../index"
     if not os.path.exists(folder):
         os.makedirs(folder)
     os.chdir(folder)
@@ -79,5 +81,4 @@ if __name__ == '__main__':
     except IndexError:
         print ("Usage : python tokenizer.py <full path of file>")
         sys.exit()
-    filename = (filename.split('/'))[-1]
     tokenizer(filename)
