@@ -55,7 +55,7 @@ def tokenizer (filename):
 
     file.close()
     cwd = os.getcwd()
-    folder = "./../index"
+    folder = "./index"
     if not os.path.exists(folder):
         os.makedirs(folder)
     os.chdir(folder)
