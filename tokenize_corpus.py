@@ -41,9 +41,8 @@ if __name__ == '__main__':
     file_list = os.listdir(corpusfolder)
     
     file_list = [filename for filename in file_list \
-            if os.path.isfile('./'+filename)]
+            if os.path.isfile('./corpus/'+filename)]
 
-    print file_list
     for filename in file_list:
         if not forced and os.path.exists("./index/"+filename+".tokens"):
             continue
