@@ -31,14 +31,15 @@ stop_words = set(["a","able","about","across","after","all","almost",
     "twas","us","wants","was","we","were","what","when","where","which",
     "while","who","whom","why","will","with","would","yet","you","your"])
 
-def tokenizer (filepath):
-    ''' This function take a filepath as argument
+def tokenizer (filename):
+    ''' This function take a filename as argument. The file is in corpus.
         It creates a set of tokens of the terms in the file and dumps them
         to a filename.tokens file in the folder "$PWD/../index/"
     '''
     
-    filename = (filepath.split('/'))[-1]
-    cwd = filepath
+    #filename = (filepath.split('/'))[-1]
+    cwd = os.getcwd()
+    filepath = cwd + "/corpus/"+filename
     print "creating index for %s" % filename
     file = open(filepath, 'r')
     tokens = set([])
