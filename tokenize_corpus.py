@@ -48,5 +48,8 @@ if __name__ == '__main__':
             continue
         else:
             print ("tokenizing "+filename)
+            cwd = os.getcwd() #get cwd
+            os.chdir('./mymodules')
             tokenizer(filename)
+            os.chdir(cwd)
     
