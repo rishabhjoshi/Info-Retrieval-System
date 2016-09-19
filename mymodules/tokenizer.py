@@ -39,7 +39,7 @@ def tokenizer (filename):
     
     #filename = (filepath.split('/'))[-1]
     cwd = os.getcwd()
-    filepath = cwd + "/corpus/"+filename
+    filepath = cwd + "/../corpus/"+filename
     print "creating index for %s" % filename
     file = open(filepath, 'r')
     tokens = set([])
@@ -55,7 +55,7 @@ def tokenizer (filename):
 
     file.close()
     cwd = os.getcwd()
-    folder = "./index"
+    folder = "../index"
     if not os.path.exists(folder):
         os.makedirs(folder)
     os.chdir(folder)
@@ -80,6 +80,6 @@ if __name__ == '__main__':
     try:
         filename = sys.argv[1]
     except IndexError:
-        print ("Usage : python tokenizer.py <full path of file>")
+        print ("Usage : python tokenizer.py <only name of file in corpus>")
         sys.exit()
     tokenizer(filename)
