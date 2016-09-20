@@ -7,7 +7,15 @@ try :
 except :
     import pickle
 
-def comparator(term1, term2, index):
+# Globally define the index for use in the comparator
+indexfolder = '../index/'
+if not os.path.exists(indexfolder+'index.index'):
+    print ("No index exists. Please create the index first!")
+    sys.exit()
+index = pickle.load(open(indexfolder+'index.index', "rb"))
+
+# Comparator used to sort the input terms list
+def comparator(term1, term2):
     '''
     Compare the terms' size of posting in index
     '''
@@ -17,16 +25,16 @@ def comparator(term1, term2, index):
         return 1
 
 def AND(terms):
-    operation(terms, 'and')
+    return operation(terms, 'and')
 
 def OR(terms):
-    operation(terms, 'or')
+    return operation(terms, 'or')
 
-def diff(terms):
-    operation(terms, 'diff')
+def DIFF(terms):
+    return operation(terms, 'diff')
 
-def symdiff(terms):
-    operation(terms, 'symdiff')
+def SYMDIFF(terms):
+    return operation(terms, 'symdiff')
 
 def operation(terms, flag):
     '''
@@ -34,12 +42,7 @@ def operation(terms, flag):
     and returns a set of postings present in the intersection of the 
     terms's list
     '''
-    indexfolder = '../index/'
-    if not os.path.exists(indexfolder+'index.index'):
-        print ("No index exists. Please create the index first!")
-        sys.exit()
-    index = pickle.load(open(indexfolder+'index.index', "rb"))
-    terms = sort(terms, cmp = comparator)
+    terms = sorted(terms, cmp = comparator)
     ans = index[terms[0]]   #postinglist of 1st term
     for term in terms:
         plist = index[term]
@@ -52,3 +55,8 @@ def operation(terms, flag):
         elif flag == 'symdiff':
             ans = ans ^ plist
     return ans         
+
+if __name__ == '__main__':
+    print ("This module has functions to merge the posting lists of terms on conditinos such as AND, OR, DIFF, SYMDIFF")
+    print ("The functions of this module can be used by passing a list of terms to \n   -- AND\n   -- OR\n   -- DIFF\n   -- SYMDIFF")
+    sys.exit()
