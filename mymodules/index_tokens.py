@@ -38,10 +38,12 @@ def index_tokens (flag):
     for filename in filelist:
         file_tokens = pickle.load(open(filename, "rb"))
         for token in file_tokens:
+            filenamebare = filename.split('/')[-1] # get only file.token
+            filenamebare = filenamebare.split('.')[0]  # get only file
             if index.has_key(token):
-                index[token].add(filename)
+                index[token].add(filenamebare)
             else:
-                index.update({token:set([filename])})
+                index.update({token:set([filenamebare])})
         print ("Index of "+filename+" done!")
 
     pickle.dump(index, open(path_of_index_folder+'index.index', 'wb'))
