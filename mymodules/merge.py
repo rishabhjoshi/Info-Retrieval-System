@@ -17,6 +17,18 @@ def comparator(term1, term2, index):
         return 1
 
 def AND(terms):
+    operation(terms, 'and')
+
+def OR(terms):
+    operation(terms, 'or')
+
+def diff(terms):
+    operation(terms, 'diff')
+
+def symdiff(terms):
+    operation(terms, 'symdiff')
+
+def operation(terms, flag):
     '''
     AND takes a list of terms, and merges the posting lists of these terms
     and returns a set of postings present in the intersection of the 
@@ -27,10 +39,16 @@ def AND(terms):
         print ("No index exists. Please create the index first!")
         sys.exit()
     index = pickle.load(open(indexfolder+'index.index', "rb"))
-    ans = set([])
     terms = sort(terms, cmp = comparator)
+    ans = index[terms[0]]   #postinglist of 1st term
     for term in terms:
         plist = index[term]
-        ans.union(
-            
-
+        if flag == 'and':
+            ans = ans & plist
+        elif flag == 'or':
+            ans = ans | plist
+        elif flag == 'diff':
+            ans = ans - plist
+        elif flag == 'symdiff':
+            ans = ans ^ plist
+    return ans         
