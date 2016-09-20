@@ -36,12 +36,22 @@ def DIFF(terms):
 def SYMDIFF(terms):
     return operation(terms, 'symdiff')
 
+def NOT(terms):
+    return operation(terms, 'diff')
+
 def operation(terms, flag):
     '''
     AND takes a list of terms, and merges the posting lists of these terms
     and returns a set of postings present in the intersection of the 
     terms's list
     '''
+    if flag == 'diff' and len(terms) == 1:
+        # Complement (NOT)
+        doclist = glob.glob('./../corpus/*')
+        for i in range(len(doclist)):
+            doclist[i] = (doclist[i].strip('/')[-1]).strip('.')[0]
+        ans = set(doclist) - index[terms[0]]
+        return ans
     terms = sorted(terms, cmp = comparator)
     ans = index[terms[0]]   #postinglist of 1st term
     for term in terms:
@@ -58,5 +68,5 @@ def operation(terms, flag):
 
 if __name__ == '__main__':
     print ("This module has functions to merge the posting lists of terms on conditinos such as AND, OR, DIFF, SYMDIFF")
-    print ("The functions of this module can be used by passing a list of terms to \n   -- AND\n   -- OR\n   -- DIFF\n   -- SYMDIFF")
+    print ("The functions of this module can be used by passing a list of terms to \n   -- AND\n   -- OR\n   -- DIFF\n   -- SYMDIFF\n   -- NOT")
     sys.exit()
