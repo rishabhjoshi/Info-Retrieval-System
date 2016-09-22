@@ -41,4 +41,52 @@ if you have a new file.
 
 ---
 
+## USAGE
+
+### Index creation
+
+Copy relevant documents in the corpus folder and call :
+
+```python
+python index_corpus.py -f
+```
+
+This will forced create the index of the docs present in corpus folder.
+
+### Query
+
+Run the boolean_query script and give your query in proper format as 
+argument.
+
+##### Eg 1
+
+```python
+python boolean_query.py '( eavril | ( avril & ( ! barron ) ) )'
+```
+
+A sample query is shown. Only queries in the 2 degree form are accepted.
+
+The set of eavril consists of only e. Avril has a, c, b and barron has b.
+The output has a c e.
+
+##### Eg 2
+
+```python
+python boolean_query.py '( dont & ( ! eragon ) )'
+```
+
+The output for this document d.
+
+
+## Contributions
+
+I am yet to implement 
+features so that a generic natural language boolean query can be processed.
+Ill do it if time permits. Feel free to send in a pull req with enhancements, corrections.
+The corresponding project files have the details about what all to do is left.
+
+Give credits where they are due.
+
 The corpus credits goes to github.com/gokul-uf/Boolean-Retrieval-System
+
+Self-Motivated project by : RISHABH JOSHI - BITS Pilani
