@@ -1,7 +1,10 @@
+# TODO COMPLETE THIS MODULE
+
 # This module implements the AND, OR, XOR, functions of merging the sets
 # This is mainly needed for boolean queries
 import os
 import sys
+import glob
 try :
     import cPickle as pickle
 except :
@@ -47,12 +50,13 @@ def operation(plists, flag):
     '''
     if flag == 'not':
         # Complement (NOT)a
-        doclist = glob.glob('./../corpus/*')
+        doclist = glob.glob('./corpus/*') # Will never be called from this 
+            # folder. CHANGE IF THATS NOT THE CASE
         for i in range(len(doclist)):
             doclist[i] = (doclist[i].strip('/')[-1]).strip('.')[0]
-        ans = set(doclist) - plists[0]
+        ans = set(doclist) - plists
         return ans
-    plists = sorted(plists, cmp = comparator)
+ #   plists = sorted(plists, cmp = comparator)  OVERKILL HERE IN 2 CASE
     ans = plists[0]   #postinglist of 1st plist
     for plist in plists[1:]:
         if flag == 'and':
