@@ -37,16 +37,40 @@ def SYMDIFF(terms):
     return operation(terms, 'symdiff')
 
 def NOT(terms):
-    return operation(terms, 'diff')
+    return operation(terms, 'not')
+
+def setoperation(terms, flag):
+    if flag == 'not':
+        # Complement (NOT)a
+        doclist = glob.glob('./../corpus/*')
+        for i in range(len(doclist)):
+            doclist[i] = (doclist[i].strip('/')[-1]).strip('.')[0]
+        ans = set(doclist) - terms[0]
+        return ans
+    ans = terms[0]
+    for plist in terms[1:]:
+        if flag == 'and':
+            ans = ans & plist
+        elif flag == 'or':
+            ans = ans | plist
+        elif flag == 'diff':
+            ans = ans - plist
+        elif flag == 'symdiff':
+            ans = ans ^ plist
+    return ans         
 
 def operation(terms, flag):
     '''
-    AND takes a list of terms, and merges the posting lists of these terms
-    and returns a set of postings present in the intersection of the 
+    This takes a list of terms (or sets), and merges the posting lists of these terms (or the sets, which are themselves postings)
+    and returns a set of postings present in the merged set of the 
     terms's list
     '''
-    if flag == 'diff' and len(terms) == 1:
-        # Complement (NOT)
+    if type(terms[0]) == set:
+        # merging two postings and not terms
+        return setoperation(terms, flag)
+
+    if flag == 'not':
+        # Complement (NOT)a
         doclist = glob.glob('./../corpus/*')
         for i in range(len(doclist)):
             doclist[i] = (doclist[i].strip('/')[-1]).strip('.')[0]
@@ -54,7 +78,7 @@ def operation(terms, flag):
         return ans
     terms = sorted(terms, cmp = comparator)
     ans = index[terms[0]]   #postinglist of 1st term
-    for term in terms:
+    for term in terms[1:]:
         plist = index[term]
         if flag == 'and':
             ans = ans & plist
