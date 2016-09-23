@@ -87,6 +87,6 @@ The corresponding project files have the details about what all to do is left.
 
 Give credits where they are due.
 
-The corpus credits goes to github.com/gokul-uf/Boolean-Retrieval-System
+The corpus credits goes to S Gokula Krishnan.
 
 Self-Motivated project by : RISHABH JOSHI - BITS Pilani
