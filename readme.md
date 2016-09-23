@@ -1,10 +1,22 @@
 # Information Retrieval System
 
-## Hierarchical Clustering of Research Papers
+## Possible Use Cases of this Repo
+
+#### Hierarchical Clustering of Research Papers
 
 This self inspired project will cluster the research papers or any set of
 documents in a hierarchical way, and display them in an interactive way
 to ease the segregation process of the papers.
+
+#### **Implementation** of various IR algos from tf-idf to web spiders.
+
+Boolean query document retrieval already implemented.
+To implement tf-idf next.
+Then document clustering.
+Then hierarchical clustering.
+Then dynamic indexing with web crawling.
+
+####
 
 _May be used in parital fulfilment of the Course on IR_
 
@@ -12,7 +24,7 @@ _May be used in parital fulfilment of the Course on IR_
 
 **My Modules** : Folder containing self implemented algorithms. 
 
-> _Use scikit learn if you want better implementation._
+> _Use scikit learn or other modules if you want better implementation. My aim is to learn the implementations, not just use them for some application. Good Day._
 
 ---
 
