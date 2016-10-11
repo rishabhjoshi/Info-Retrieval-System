@@ -172,8 +172,54 @@ def porter(inp):
             inp = inp[:-4] + 'log'
 
     # Step 4
+    if inp[k] == 'e':
+        if inp.endswith('icate'):
+            inp = inp[:-5] + 'ic'
+        if inp.endswith('ative'):
+            inp = inp[:-5]
+        if inp.endswith('alize'):
+            inp = inp[:-5] + 'al'
+    elif inp[k] == 'i':
+        if inp.endswith('iciti'):
+            inp = inp[:-5]+'ic'
+    elif inp[k] == 'l':
+        if inp.endswith('ical'):
+            inp = inp[:-4] + 'ic'
+        if inp.endswith('ful'):
+            inp = inp[:-3]
+    elif inp[k] == 's':
+        if inp.endswith('ness'):
+            inp = inp[:-4]
 
+    # Step 5
+    if inp[k-1] == 'a':
+        if inp.endswith('al'):
+            inp = inp[:-2]
+    elif inp[k-1] == 'c':
+        if inp.endswith('ance'):
+            inp = inp[:-4]
+        if inp.endswith('ence'):
+            inp = inp[:-4]
+    elif inp[k-1] == 'e':
+        if inp.endswith('er'):
+            inp = inp[:-2]
+    elif inp[k-1] == 'i':
+        if inp.endswith('ic'):
+            inp = inp[:-2]
+    elif inp[k-1] == 'l':
+        if inp.endswith('able') or inp.endswith('ible'):
+            inp = inp[:-4]
+    #More rules here
+    if m(inp) > 1:
+        k = j################################################
 
+    # Step 6
+    if inp[k] == 'e':
+        a = m(inp)
+        if a > 1 or a == 1 and !cvc(inp, k-1):
+            k -= 1
+    if inp[k] == 'l' and doublec(inp, k) and m(inp) > 1
+        k -= 1
     
 
 
