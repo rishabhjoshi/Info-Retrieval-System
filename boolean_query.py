@@ -6,6 +6,7 @@ try :
 except:
     import pickle
 
+    #Code for boolean_query in python.
 indexfolder = './index/'
 if not os.path.exists(indexfolder + 'index.index'):
     print ("No index exists. Please create index first!")
